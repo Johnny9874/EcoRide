@@ -1,4 +1,9 @@
-s soucieux de l'environnement et ceux qui recherchent une solution économique pour leurs déplacements. 
+# EcoRide
+
+La startup "EcoRide" fraichement crée en France, a pour objectif de réduire l'impact environnemental des déplacements en encourageant le covoiturage. 
+EcoRide prône une approche écologique et souhaite se faire connaître au travers d’un projet porté par José, le directeur technique, d’une application web.
+
+L’ambition "EcoRide" est de devenir la principale plateforme de covoiturage pour les voyageurs soucieux de l'environnement et ceux qui recherchent une solution économique pour leurs déplacements. 
 Il est important à souligner que la plateforme de covoiturage doit gérer uniquement les déplacements en voitures.
 
 # Afin de déployer l'application en local veuillez suivre ces démarches ci-dessous :
@@ -16,6 +21,8 @@ node -v
 npm -v
 psql --version
 mongo --version
+
+🔄 Clonage du projet
 
 git clone https://github.com/Johnny9874/EcoRide.git
 cd ecoride-backend
