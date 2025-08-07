@@ -1,9 +1,4 @@
-# EcoRide
-
-La startup "EcoRide" fraichement crée en France, a pour objectif de réduire l'impact environnemental des déplacements en encourageant le covoiturage. 
-EcoRide prône une approche écologique et souhaite se faire connaître au travers d’un projet porté par José, le directeur technique, d’une application web.
-
-L’ambition "EcoRide" est de devenir la principale plateforme de covoiturage pour les voyageurs soucieux de l'environnement et ceux qui recherchent une solution économique pour leurs déplacements. 
+s soucieux de l'environnement et ceux qui recherchent une solution économique pour leurs déplacements. 
 Il est important à souligner que la plateforme de covoiturage doit gérer uniquement les déplacements en voitures.
 
 # Afin de déployer l'application en local veuillez suivre ces démarches ci-dessous :
@@ -22,8 +17,11 @@ npm -v
 psql --version
 mongo --version
 
+<<<<<<< HEAD
 🔄 Clonage du projet
 
+=======
+>>>>>>> dev
 git clone https://github.com/Johnny9874/EcoRide.git
 cd ecoride-backend
 npm install ou yarn install
@@ -138,4 +136,8 @@ Et si on retourne sur Atlas, vous verrez :
 Ainsi l'insertion de donnée test sur Atlas a été un succès.
 # PS
 
+<<<<<<< HEAD
 Si vous souhaitez visualiser les fichiers PDF depuis votre éditeur de code en l'occurence VisualStudio Code, il va falloir installer l'extension "PDF Preview" d'analyticsignal.com !
+=======
+Si vous souhaitez visualiser les fichiers PDF depuis votre éditeur de code en l'occurence VisualStudio Code, il va falloir installer l'extension "PDF Preview" d'analyticsignal.com !
+>>>>>>> dev
