@@ -1,7 +1,14 @@
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-dotenv.config();
+// Permet de reconstruire __dirname dans un module ES
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Charge .env depuis la racine du projet
+dotenv.config({ path: path.resolve(__dirname, '../../../../.env') });
 
 const connectDB = async () => {
   try {

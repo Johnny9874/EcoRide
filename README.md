@@ -136,6 +136,97 @@ Et si on retourne sur Atlas, vous verrez :
 {"_id":{"$oid":"68949ff3634597bebed0183c"},"email":"test@example.com","pseudo":"TestUser","role":"USER","credits":{"$numberInt":"20"},"createdAt":{"$date":{"$numberLong":"1754570739329"}},"__v":{"$numberInt":"0"}}
 
 Ainsi l'insertion de donnée test sur Atlas a été un succès.
+
+# Creation de l'API RESTful avec express/node.js pour la base NoSQL
+
+On commence par installer express dans ecoride-backend avec la commande : npm install express
+
+De cette façon, on pourra gérer plus facilement les routes et pouvoir crée mon propre serveur web.
+
+Puis j'ai crée un fichier dans le dossier ecoride-backend appelé server.js qui charge mes variables d'environnement, se connecte a la base de donnée MongoDB avec mangoose, lance le serveur local et gère les potentiels erreur avec la méthode catch(), configure Express avec le parsing JSON, ajoute le prefixe /api/users au route défini dans ecoride-backend\src\routes\mongo\users_routes.js;
+
+Ces routes sont de type CRUD, et pour finir on a mis a jour notre package.json afin de lancer le fichier server.js afin de lancer le serveur avec la commande npm run dev.
+
+Afin de vérifier si mes routes fonctionne, j'ai utiliser PostMan.
+
+On commence par la route GET http://localhost:3000/api/users/ !
+
+Assurez vous pendant cette période de test de mettre dans Headers en key = Content-Type et en value = application/json
+
+Appuyer sur Send et vous aurez la liste de tout les users enregistrer dans la base mongodb. 
+
+Puis GET http://localhost:3000/api/users/:id qui renverra l'user ayant l'id que vous préciserai à la place de :id puis appuyer sur Send et on vous renverra l'user correspondant à cette id. 
+
+Puis PUT http://localhost:3000/api/users/:id qui permettra de modifier la valeur d'un champ d'un user précis. Pour ce faire remplacer :id par l'id de l'user concerné et appuyer sur Body, raw et selectionner JSON puis suiver cette syntaxe dans la zone de texte : 
+
+{
+    "champ": "valeur",
+    "champ2": "valeur2"
+}
+
+Puis appuyer sur Send et les données de l'user concerné seront mis à jour !
+
+Avec ces tests, on peut être sûr que toutes nos routes sont fonctionnel et notre API RESTful est fini pour notre base de donnée NoSQL MongoDB !
+
+# API RESTful SQL avec Prisma
+
+Ici, on commence par crée un fichier dans notre cas on commence par carpools.routes.js qui contiendra toutes nos routes pour la table carpools, on y import comme tout les fichiers de routing express et le client Prisma puis on stock cette connexion au serveur express dans une variable appelé router et le client Prisma dans une variable appelé prisma. 
+
+Puis on défini toutes nos routes contenant une requette CRUD spécifique et on oublie pas d'exporter le router a la fin du fichier.
+
+Puis on import le rooter dans server.js et on défini les préfixes /api/sql/carpools à toutes nos routes défini dans le fichier carpools.routes.js 
+
+Dès que c'est fait on peut lancer le serveur express en fessant ceci :
+
+npm run dev 
+
+On pourra ensuite passer sur postman et commencer a tester la route GET.
+
+Définissons le type de requete en premier en GET, puis l'url suivant : 
+
+http://localhost:3000/api/sql/carpools
+
+Faites bien attention à définir dans Headers : Content-Type dans la case Key et application/json dans la case Value.
+
+Et vous aurez un objet JSON sous forme de liste car cette requette renvois les lignes de Carpool, Vehicle et User grâce à l'instruction include { driver: true, vehicle: true} du fichier carpools.routes.js
+
+Noté que cette relation avec Carpool de la table User et Vehicle ont été définis dans le fichier schema.prisma !
+
+Ici on a tester seulement la requette GET mais on peut également tester GET by id en ajoutant l'id qu'on souhaite juste après carpools comme ceci : 
+
+http://localhost:3000/api/sql/carpools/"Mettez l'id souhaiter ici"
+
+Pour le POST il vous suffit de mettre cet url : http://localhost:3000/api/sql/carpools
+
+Et de mettre POST en type requette et mettre les paramettres application/json dans headers et aller dans Body et y mettre l'objet json souhaitez par exemple :
+
+{
+  "from": "Marseille",
+  "to": "Nice",
+  "date": "2025-08-20T14:30:00.000Z",
+  "price": 12.5,
+  "isEco": true,
+  "seatsTotal": 4,
+  "seatsLeft": 4,
+  "driverId": "a0d2eda9-845a-4c36-a9d2-2674bc492f2e",
+  "vehicleId": "27e549f5-ee33-43ba-a5d3-9cd91dda0fba",
+  "status": "PLANNED"
+}
+
+Attention de bien mettre un driverId et un vehicleId existant sans cela, Prisma renverra une erreur de contrainte.
+
+Pour PUT il vous suffit de mettre l'url : http://localhost:3000/api/sql/carpools/
+
+Et de mettre de type PUT et mettre une valeur de champs différentes comme ceci :
+
+{
+    "from": "Rouen"
+}
+
+Et enfin DELETE, de même url : http://localhost:3000/api/sql/carpools/"id de la ligne que vous souhaitez supprimer"
+
+Et la ligne correspondantes sera supprimé !
+
 # PS
 
 Si vous souhaitez visualiser les fichiers PDF depuis votre éditeur de code en l'occurence VisualStudio Code, il va falloir installer l'extension "PDF Preview" d'analyticsignal.com !
