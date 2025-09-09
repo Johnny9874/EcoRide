@@ -1,232 +1,208 @@
 # EcoRide
 
-La startup "EcoRide" fraichement crée en France, a pour objectif de réduire l'impact environnemental des déplacements en encourageant le covoiturage. 
-EcoRide prône une approche écologique et souhaite se faire connaître au travers d’un projet porté par José, le directeur technique, d’une application web.
+EcoRide est une startup française qui a pour objectif de réduire l'impact environnemental des déplacements en encourageant le covoiturage.
+L’application web vise à devenir la plateforme principale pour les voyageurs soucieux de l'environnement et ceux cherchant une solution économique pour leurs trajets en voiture.
 
-L’ambition "EcoRide" est de devenir la principale plateforme de covoiturage pour les voyageurs soucieux de l'environnement et ceux qui recherchent une solution économique pour leurs déplacements. 
-Il est important à souligner que la plateforme de covoiturage doit gérer uniquement les déplacements en voitures.
+# Prérequis
 
-# Afin de déployer l'application en local veuillez suivre ces démarches ci-dessous :
-
-✅ Prérequis
 Assurez-vous d’avoir les outils suivants installés sur votre machine :
-    • Node.js : version 18 ou plus
-    • npm : version 9 ou plus
-    • PostgreSQL : version 14 ou plus
-    • MongoDB : version 6 ou plus
 
-Vérifiez les installations avec les commandes suivantes :
+Node.js >= 18
+npm >= 9
+PostgreSQL >= 14
+MongoDB >= 6
+
+Vérifiez avec :
 
 node -v
 npm -v
 psql --version
 mongo --version
 
-🔄 Clonage du projet
+# Clonage et installation
 
 git clone https://github.com/Johnny9874/EcoRide.git
 cd ecoride-backend
-npm install ou yarn install
+npm install   # ou yarn install
 
-Assurez-vous de vous situer dans le dossier ecoride-backend avant d’installer les dépendances.
+# Configuration
 
-🔐 Configuration du fichier .env
-
-Créez un fichier .env à la racine d'ecoride-backend avec ce contenu :
+Créez un fichier .env à la racine de ecoride-backend :
 
 PORT=3000
 DATABASE_URL=postgresql://user:password@localhost:5432/ecoride
 MONGO_URI=mongodb://localhost:27017/ecoride
 JWT_SECRET=ma_cle_ultra_secrete
 
-🧬 Configuration de PostgreSQL avec Prisma
+# Base de données SQL avec Prisma
 
-Initialisez la base de données avec :
+Initialiser la base et générer le client Prisma :
 
 npx prisma migrate dev --name init
 npx prisma generate
 
-💡 La base de données sera automatiquement peuplée si un fichier seed.ts est prévu.
 
-📦 Lancement du serveur et configuration MongoDB
+# Insertion de données test (si seed.js présent) :
 
-Lancez le serveur en développement avec :
+node seed.js
+
+Vérifiez avec pgAdmin : Databases/ecoride/Schemas/public/Tables.
+
+# Base de données NoSQL (MongoDB)
+
+Créez un cluster sur MongoDB Atlas.
+Récupérez l’URL de connexion et mettez-la dans .env.
+
+# Installez les dépendances :
+
+npm install mongoose dotenv
+
+# Lancer le serveur MongoDB :
 
 npm run dev
 
-ou si vous utilisez nodemon :
 
-npx nodemon server.js
+# Vérifiez l’insertion de données test dans Atlas.
 
-L’API sera disponible à l’adresse :
+Lancer le serveur
+npm run dev
 
-http://localhost:3000/api
+API disponible : http://localhost:3000/api
 
-Pour tester l’API, vous pouvez utiliser Postman.
-🛠️ Outils pour le développement local des bases de données :
-    • PostgreSQL : pgAdmin
-    • MongoDB : MongoDB Compass
+# API RESTful
 
-# Création de la base de donnée SQL et insértion de donnée test
+# MongoDB (NoSQL) :
 
-Afin de crée la base de donnée installer postgreSQL comme précisé en haut, installer également pgAdmin 4 afin de mieux visualiser les tables et les données inséré.
+GET /api/users/ → liste des utilisateurs
+GET /api/users/:id → un utilisateur précis
+PUT /api/users/:id → modifier un utilisateur
+POST /api/users/ → créer un utilisateur
 
-Faites click droit sur Databases et selectionner Create et Database...
+Assurez-vous de mettre Content-Type: application/json dans les headers pour toutes les requêtes POST et PUT.
 
-Laisser PostgreSQL en tant qu'user, et nommé la base ecoride.
+# PostgreSQL (SQL avec Prisma)
 
-Puis dans EcoRide/prisma/schema.prisma, vous pouvez voir les différent modèle assigné à chaque table de notre base postgreSQL. 
+Ici, vous trouverez tout les endpoints CRUD des différente table: 
 
-Dès que l'on a fini de définir nos modèles : on peut exécuter npx prisma migrate dev --name "nom décrivant la migration réalisé" pour migrer nos modèle et npx prisma generate pour générer un nouveau client Prisma servant a intéragir avec les tables de notre base de donnée depuis notre code.
+# carpools endpoint
 
-Un dossier migrations sera alors crée avec à l'intérieur toutes nos migrations réalisé avec succès. Ce sont des fichiers SQL contenant les scripts visant à généré nos tables postgreSQL.
+GET /api/sql/carpools/ → liste des covoiturages
+GET /api/sql/carpools/:id → covoiturage spécifique
+POST /api/sql/carpools/ → créer un covoiturage
+PUT /api/sql/carpools/:id → modifier un covoiturage
+DELETE /api/sql/carpools/:id → supprimer un covoiturage
 
-Maintenant que nos modèles ont été migré vers notre base de données postgreSQL, vous pouvez vérifier depuis pgAdmin 4 en allant dans Databases/ecoride/Schemas/public/Tables et vous y trouverai toutes nos tables.
+# feedbacks endpoint
 
-Passons maintenant à l'insertion de donnée test pour s'assurer que tout fonctionne, j'ai crée un fichier seed.js dans ecoride/ecoride-backend/src/db/prisma.
+GET /api/sql/feedbacks/ → liste des feedbacks
+GET /api/sql/feedbacks/:id → feedbacks spécifique
+POST /api/sql/feedbacks/ → créer un feedbacks
+PUT /api/sql/feedbacks/:id → modifier un feedbacks
+DELETE /api/sql/feedbacks/:id → supprimer un feedbacks
 
-Ce fichier importe notre client Prisma nous permettant d'intéragir avec notre bdd depuis notre code et on stock cette connexion au client dans une constance prisma.
+# preferences endpoint
 
-Puis on déclare une fonction main() asynchronne qui contient l'insertion de donnée dans chaque table crée précédement sous forme d'objet.
+GET /api/sql/preferences/ → liste des preferences
+GET /api/sql/preferences/:id → preferences spécifique
+POST /api/sql/preferences/ → créer une preferences
+PUT /api/sql/preferences/:id → modifier une preferences
+DELETE /api/sql/preferences/:id → supprimer une preferences
 
-On appelle ensuite cette fonction en fessant attention à bien gérer les potentiel ereur avec la méthode catch().
+# reservations endpoint
 
-Afin d'exécuter ce fichier et voir si l'insertion à marcher, exécuter : 
+GET /api/sql/reservations/ → liste des reservations
+GET /api/sql/reservations/:id → reservation spécifique
+POST /api/sql/reservations/ → créer une reservation
+PUT /api/sql/reservations/:id → modifier une reservation
+DELETE /api/sql/reservations/:id → supprimer une reservation
 
-node seed.js 
+# users endpoint
 
-Assurez vous de faire ceci avant : 
+GET /api/sql/users/ → liste des users
+GET /api/sql/users/:id → user spécifique
+POST /api/sql/users/ → créer un user
+PUT /api/sql/users/:id → modifier un user
+DELETE /api/sql/users/:id → supprimer un user
 
-cd EcoRide\ecoride-backend\src\db\prisma
+# vehicles endpoint
 
-Et vous pourrez par la suite retourner sur pgAdmin 4, Databases/ecoride/Schemas/public/Tables et clique droit sur une des tables, View/Edit Data, All Rows et vous pourrez voir que les données test ajouté depuis seed.js ont bien été inséré dans leur tables respectif dans la section Data Output !
+GET /api/sql/vehicles/ → liste des vehicles
+GET /api/sql/vehicles/:id → vehicle spécifique
+POST /api/sql/vehicles/ → créer un vehicle
+PUT /api/sql/vehicles/:id → modifier un vehicle
+DELETE /api/sql/vehicles/:id → supprimer un vehicle
 
-# Création de la base de donnée NoSQL et insertion de donnée test 
+# Relation entre table
 
-Pour la partie NoSQL, je pars sur le cloud MongoDB Atlas avec Mongoose en tant qu'ODM. 
+Ici, vous pouvez visualisé les relations de chacune des tables présent dans ce projet.
 
-On commence par crée un clusters puis on nomme le cluster ecoride puis on récupére l'URL de connection depuis Atlas et on la stock dans une variable dans le fichier .env ! 
+# User
 
-On installe ensuite notre ODM depuis ecoride-backend en exécutant cette commande : 
+Peut posséder plusieurs Vehicles (User.id → Vehicle.ownerId)
 
-npm install mongoose
+Peut créer plusieurs Carpools (User.id → Carpool.driverId)
 
-Installer également le module dotenv a la racine du projet afin de charger vos variable d'environnement.
+Peut avoir plusieurs Reservations (User.id → Reservation.userId)
 
-Puis importé ce module dans un fichier responsable de la connection a la base de donnée MongoDB et charger vos variables d'environnement depuis ce fichier via 
+Peut avoir plusieurs Preferences (User.id → Preference.driverId)
 
-dotenv.config(); 
+# Vehicle
 
-Faites également attention a bien rajouter "type": "module", dans package.json et 
+Appartient à un User (Vehicle.ownerId → User.id)
 
-"scripts": {
-    "dev": "nodemon ecoride-backend/src/db/mongoose/index.js"
-  }
+Peut être utilisé pour plusieurs Carpools (Vehicle.id → Carpool.vehicleId)
 
-Dès que c'est bon exécuter npm run dev depuis la racine (ou se trouve votre package.json) et vous aurez le message suivant : MongoDB Atlas connecté !
+# Carpool
 
-Afin de vérifier si l'insertion de donnée test fonctionne, j'ai crée un fichier un modèle appelé User.js qui crée une collection appelé users avec plusieurs champ tel que id, email, pseudo, role, credits, createdAt.
+Appartient à un User en tant que driver (Carpool.driverId → User.id)
 
-Puis dans index.js, j'ai initalisé une fonction anonyme qui attends que la connection a la base de donnée soit faites pour ensuite initialiser un nouveau user sous forme d'objet via le modèle User qu'on a importé au debut du fichier index.js.
+Utilise un Vehicle (Carpool.vehicleId → Vehicle.id)
 
-On y entre un email et un pseudo et on utilise un try/catch pour gerer les potentiel erreur lors de l'insertion et on ferme le process après insertion.
+Peut avoir plusieurs Reservations (Carpool.id → Reservation.carpoolId)
 
-Et si on retourne sur Atlas, vous verrez : 
+# Reservation
 
-{"_id":{"$oid":"68949ff3634597bebed0183c"},"email":"test@example.com","pseudo":"TestUser","role":"USER","credits":{"$numberInt":"20"},"createdAt":{"$date":{"$numberLong":"1754570739329"}},"__v":{"$numberInt":"0"}}
+Appartient à un User (Reservation.userId → User.id)
 
-Ainsi l'insertion de donnée test sur Atlas a été un succès.
+Liée à un Carpool (Reservation.carpoolId → Carpool.id)
 
-# Creation de l'API RESTful avec express/node.js pour la base NoSQL
+Peut avoir un Feedback (Reservation.id → Feedback.reservationId)
 
-On commence par installer express dans ecoride-backend avec la commande : npm install express
+# Feedback
 
-De cette façon, on pourra gérer plus facilement les routes et pouvoir crée mon propre serveur web.
+Appartient à une Reservation (Feedback.reservationId → Reservation.id)
 
-Puis j'ai crée un fichier dans le dossier ecoride-backend appelé server.js qui charge mes variables d'environnement, se connecte a la base de donnée MongoDB avec mangoose, lance le serveur local et gère les potentiels erreur avec la méthode catch(), configure Express avec le parsing JSON, ajoute le prefixe /api/users au route défini dans ecoride-backend\src\routes\mongo\users_routes.js;
+# Preference
 
-Ces routes sont de type CRUD, et pour finir on a mis a jour notre package.json afin de lancer le fichier server.js afin de lancer le serveur avec la commande npm run dev.
+Appartient à un User (Preference.driverId → User.id)
 
-Afin de vérifier si mes routes fonctionne, j'ai utiliser PostMan.
+# Workflow Git recommandé
 
-On commence par la route GET http://localhost:3000/api/users/ !
+Travailler sur dev :
 
-Assurez vous pendant cette période de test de mettre dans Headers en key = Content-Type et en value = application/json
+git checkout dev
 
-Appuyer sur Send et vous aurez la liste de tout les users enregistrer dans la base mongodb. 
+.modifier README.md
 
-Puis GET http://localhost:3000/api/users/:id qui renverra l'user ayant l'id que vous préciserai à la place de :id puis appuyer sur Send et on vous renverra l'user correspondant à cette id. 
+git add README.md
+git commit -m "Update README"
+git push origin dev
 
-Puis PUT http://localhost:3000/api/users/:id qui permettra de modifier la valeur d'un champ d'un user précis. Pour ce faire remplacer :id par l'id de l'user concerné et appuyer sur Body, raw et selectionner JSON puis suiver cette syntaxe dans la zone de texte : 
 
-{
-    "champ": "valeur",
-    "champ2": "valeur2"
-}
+Merger vers main après validation :
 
-Puis appuyer sur Send et les données de l'user concerné seront mis à jour !
+git checkout main
+git merge dev
+git push origin main
 
-Avec ces tests, on peut être sûr que toutes nos routes sont fonctionnel et notre API RESTful est fini pour notre base de donnée NoSQL MongoDB !
+Toujours faire les changements sur dev, tester, puis fusionner vers main pour garder la branche principale stable.
 
-# API RESTful SQL avec Prisma
+# Bonnes pratiques
 
-Ici, on commence par crée un fichier dans notre cas on commence par carpools.routes.js qui contiendra toutes nos routes pour la table carpools, on y import comme tout les fichiers de routing express et le client Prisma puis on stock cette connexion au serveur express dans une variable appelé router et le client Prisma dans une variable appelé prisma. 
+Ne pas commiter les fichiers sensibles (.env, node_modules).
 
-Puis on défini toutes nos routes contenant une requette CRUD spécifique et on oublie pas d'exporter le router a la fin du fichier.
+Vérifier les migrations Prisma avant de merger.
 
-Puis on import le rooter dans server.js et on défini les préfixes /api/sql/carpools à toutes nos routes défini dans le fichier carpools.routes.js 
+Toujours tester les endpoints API via Postman ou un outil similaire.
 
-Dès que c'est fait on peut lancer le serveur express en fessant ceci :
-
-npm run dev 
-
-On pourra ensuite passer sur postman et commencer a tester la route GET.
-
-Définissons le type de requete en premier en GET, puis l'url suivant : 
-
-http://localhost:3000/api/sql/carpools
-
-Faites bien attention à définir dans Headers : Content-Type dans la case Key et application/json dans la case Value.
-
-Et vous aurez un objet JSON sous forme de liste car cette requette renvois les lignes de Carpool, Vehicle et User grâce à l'instruction include { driver: true, vehicle: true} du fichier carpools.routes.js
-
-Noté que cette relation avec Carpool de la table User et Vehicle ont été définis dans le fichier schema.prisma !
-
-Ici on a tester seulement la requette GET mais on peut également tester GET by id en ajoutant l'id qu'on souhaite juste après carpools comme ceci : 
-
-http://localhost:3000/api/sql/carpools/"Mettez l'id souhaiter ici"
-
-Pour le POST il vous suffit de mettre cet url : http://localhost:3000/api/sql/carpools
-
-Et de mettre POST en type requette et mettre les paramettres application/json dans headers et aller dans Body et y mettre l'objet json souhaitez par exemple :
-
-{
-  "from": "Marseille",
-  "to": "Nice",
-  "date": "2025-08-20T14:30:00.000Z",
-  "price": 12.5,
-  "isEco": true,
-  "seatsTotal": 4,
-  "seatsLeft": 4,
-  "driverId": "a0d2eda9-845a-4c36-a9d2-2674bc492f2e",
-  "vehicleId": "27e549f5-ee33-43ba-a5d3-9cd91dda0fba",
-  "status": "PLANNED"
-}
-
-Attention de bien mettre un driverId et un vehicleId existant sans cela, Prisma renverra une erreur de contrainte.
-
-Pour PUT il vous suffit de mettre l'url : http://localhost:3000/api/sql/carpools/
-
-Et de mettre de type PUT et mettre une valeur de champs différentes comme ceci :
-
-{
-    "from": "Rouen"
-}
-
-Et enfin DELETE, de même url : http://localhost:3000/api/sql/carpools/"id de la ligne que vous souhaitez supprimer"
-
-Et la ligne correspondantes sera supprimé !
-
-# PS
-
-Si vous souhaitez visualiser les fichiers PDF depuis votre éditeur de code en l'occurence VisualStudio Code, il va falloir installer l'extension "PDF Preview" d'analyticsignal.com !
+# 💡 Astuce : pour visualiser les PDF dans VS Code, installer l’extension PDF Preview.
