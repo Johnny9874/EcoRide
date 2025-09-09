@@ -86,51 +86,51 @@ Ici, vous trouverez tout les endpoints CRUD des différente table:
 
 # carpools endpoint
 
-GET /api/sql/carpools/ → liste des covoiturages
-GET /api/sql/carpools/:id → covoiturage spécifique
-POST /api/sql/carpools/ → créer un covoiturage
-PUT /api/sql/carpools/:id → modifier un covoiturage
-DELETE /api/sql/carpools/:id → supprimer un covoiturage
+GET /api/sql/carpools/ → liste des covoiturages <br>
+GET /api/sql/carpools/:id → covoiturage spécifique <br>
+POST /api/sql/carpools/ → créer un covoiturage <br>
+PUT /api/sql/carpools/:id → modifier un covoiturage <br>
+DELETE /api/sql/carpools/:id → supprimer un covoiturage <br>
 
 # feedbacks endpoint
 
-GET /api/sql/feedbacks/ → liste des feedbacks
-GET /api/sql/feedbacks/:id → feedbacks spécifique
-POST /api/sql/feedbacks/ → créer un feedbacks
-PUT /api/sql/feedbacks/:id → modifier un feedbacks
-DELETE /api/sql/feedbacks/:id → supprimer un feedbacks
+GET /api/sql/feedbacks/ → liste des feedbacks <br>
+GET /api/sql/feedbacks/:id → feedbacks spécifique <br>
+POST /api/sql/feedbacks/ → créer un feedbacks <br>
+PUT /api/sql/feedbacks/:id → modifier un feedbacks <br>
+DELETE /api/sql/feedbacks/:id → supprimer un feedbacks <br>
 
 # preferences endpoint
 
-GET /api/sql/preferences/ → liste des preferences
-GET /api/sql/preferences/:id → preferences spécifique
-POST /api/sql/preferences/ → créer une preferences
-PUT /api/sql/preferences/:id → modifier une preferences
-DELETE /api/sql/preferences/:id → supprimer une preferences
+GET /api/sql/preferences/ → liste des preferences <br>
+GET /api/sql/preferences/:id → preferences spécifique <br>
+POST /api/sql/preferences/ → créer une preferences <br>
+PUT /api/sql/preferences/:id → modifier une preferences <br>
+DELETE /api/sql/preferences/:id → supprimer une preferences <br>
 
 # reservations endpoint
 
-GET /api/sql/reservations/ → liste des reservations
-GET /api/sql/reservations/:id → reservation spécifique
-POST /api/sql/reservations/ → créer une reservation
-PUT /api/sql/reservations/:id → modifier une reservation
-DELETE /api/sql/reservations/:id → supprimer une reservation
+GET /api/sql/reservations/ → liste des reservations <br>
+GET /api/sql/reservations/:id → reservation spécifique <br>
+POST /api/sql/reservations/ → créer une reservation <br>
+PUT /api/sql/reservations/:id → modifier une reservation <br>
+DELETE /api/sql/reservations/:id → supprimer une reservation <br>
 
 # users endpoint
 
-GET /api/sql/users/ → liste des users
-GET /api/sql/users/:id → user spécifique
-POST /api/sql/users/ → créer un user
-PUT /api/sql/users/:id → modifier un user
-DELETE /api/sql/users/:id → supprimer un user
+GET /api/sql/users/ → liste des users <br>
+GET /api/sql/users/:id → user spécifique <br>
+POST /api/sql/users/ → créer un user <br>
+PUT /api/sql/users/:id → modifier un user <br>
+DELETE /api/sql/users/:id → supprimer un user <br>
 
 # vehicles endpoint
 
-GET /api/sql/vehicles/ → liste des vehicles
-GET /api/sql/vehicles/:id → vehicle spécifique
-POST /api/sql/vehicles/ → créer un vehicle
-PUT /api/sql/vehicles/:id → modifier un vehicle
-DELETE /api/sql/vehicles/:id → supprimer un vehicle
+GET /api/sql/vehicles/ → liste des vehicles <br>
+GET /api/sql/vehicles/:id → vehicle spécifique <br>
+POST /api/sql/vehicles/ → créer un vehicle <br>
+PUT /api/sql/vehicles/:id → modifier un vehicle <br>
+DELETE /api/sql/vehicles/:id → supprimer un vehicle <br>
 
 # Relation entre table
 
