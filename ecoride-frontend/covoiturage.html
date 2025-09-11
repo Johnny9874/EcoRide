@@ -3,11 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/covoiturage.css" rel="stylesheet">
     <title>covoiturage - EcoRide</title>
 </head>
 <body>
-    <h1>covoiturage Dashboard</h1>
-    <script src="js/login.js"></script>
+    <nav class="navbar">
+        <a href="index.html" class="logo-link">
+            <p>EcoRide</p>
+            <img class="logo" src="img/logo.png" alt="Logo Ecoride"></img>
+        </a>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="covoiturage.html">Covoiturages</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="register.html">Connexion</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="background-container">
+            <div class="centered">
+                <h1>Trouver un voyage</h1>
+            </div>
+        </div>
+        <form class="form" id="form-recherche" action="covoiturage.html" method="GET">
+            <div>
+                <input type="text" name="depart" id="depart-input" list="depart-suggestion" placeholder="Départ" class="depart" value>
+                <datalist id="depart-suggestion">
+                    <option value="Paris"></option>
+                    <option value="Marseille"></option>
+                    <option value="Lyon"></option>
+                    <option value="Toulouse"></option>
+                    <option value="Nice"></option>
+                    <option value="Nantes"></option>
+                    <option value="Montpellier"></option>
+                    <option value="Strasbourg"></option>
+                    <option value="Bordeaux"></option>
+                    <option value="Lille"></option>
+                    <option value="Rennes"></option>
+                    <option value="Reims"></option>
+                    <option value="Le Havre"></option>
+                    <option value="Saint-Étienne"></option>
+                    <option value="Toulon"></option>
+                    <option value="Angers"></option>
+                    <option value="Grenoble"></option>
+                    <option value="Dijon"></option>
+                    <option value="Nîmes"></option>
+                    <option value="Aix-en-Provence"></option>
+                    <option value="La Rochelle"></option>
+                    <option value="Clermont-Ferrand"></option>
+                    <option value="Le Mans"></option>
+                    <option value="Amiens"></option>
+                    <option value="Tours"></option>
+                    <option value="Perpignan"></option>
+                    <option value="Metz"></option>
+                    <option value="Caen"></option>
+                    <option value="Boulogne-Billancourt"></option>
+                    <option value="Nancy"></option>
+                    <option value="Saint-Denis"></option>
+                    <option value="Pau"></option>
+                    <option value="Neuilly-sur-Seine"></option>
+                    <option value="La Seyne-sur-Mer"></option>
+                </datalist>
+                <input type="text" name="arrive" id="arrive-input" list="arrive-suggestion" placeholder="Arrivé" class="arrive" value>
+                <datalist id="arrive-suggestion">
+                    <option value="Paris"></option>
+                    <option value="Marseille"></option>
+                    <option value="Lyon"></option>
+                    <option value="Toulouse"></option>
+                    <option value="Nice"></option>
+                    <option value="Nantes"></option>
+                    <option value="Montpellier"></option>
+                    <option value="Strasbourg"></option>
+                    <option value="Bordeaux"></option>
+                    <option value="Lille"></option>
+                    <option value="Rennes"></option>
+                    <option value="Reims"></option>
+                    <option value="Le Havre"></option>
+                    <option value="Saint-Étienne"></option>
+                    <option value="Toulon"></option>
+                    <option value="Angers"></option>
+                    <option value="Grenoble"></option>
+                    <option value="Dijon"></option>
+                    <option value="Nîmes"></option>
+                    <option value="Aix-en-Provence"></option>
+                    <option value="La Rochelle"></option>
+                    <option value="Clermont-Ferrand"></option>
+                    <option value="Le Mans"></option>
+                    <option value="Amiens"></option>
+                    <option value="Tours"></option>
+                    <option value="Perpignan"></option>
+                    <option value="Metz"></option>
+                    <option value="Caen"></option>
+                    <option value="Boulogne-Billancourt"></option>
+                    <option value="Nancy"></option>
+                    <option value="Saint-Denis"></option>
+                    <option value="Pau"></option>
+                    <option value="Neuilly-sur-Seine"></option>
+                    <option value="La Seyne-sur-Mer"></option>
+                </datalist>
+                <input type="date" name="date" placeholder="Date" class="date" value="">
+                <input type="number" name="passagers" id="nombre-passagers" min="1" placeholder="Nombre de passagers" class="nombre-passagers" value="">
+                <input type="submit" value="Rechercher" class="submit-btn">
+            </div>
+        </form>
+
+        <div class="filtres">
+            <button>Filtres</button>
+            <a>Effacer filtres</a>
+        </div>
+
+        <div class="cards">
+
+        </div>
+        <p>Veuillez indiquer le lieu de départ, d'arrivée, la date et le nombre de passagers...</p>
+    </main>
+
+    <footer class="footer">
+        <p>EcoRide, 2025</p>
+        <p>ecoride@exemple.com.fr</p>
+        <a href="">Mentions Legales</a>
+    </footer>
+    <script src="js/covoiturage.js"></script>
 </body>
 </html>
