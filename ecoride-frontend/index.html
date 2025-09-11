@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/home.css" rel="stylesheet">
+    <title>EcoRide</title>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo-link">
+            <p>EcoRide</p>
+            <img class="logo" src="img/logo.png" alt="Logo Ecoride"></img>
+        </a>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="covoiturage.html">Covoiturages</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="register.html">Connexion</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="background-container">
+            <div class="centered">
+                <h1>En route vers la mobilité verte !</h1>
+            </div>
+        </div>
+
+        <form class="form" id="form-recherche" action="covoiturage.html" method="GET">
+            <div>
+                <input type="text" name="depart" id="depart-input" list="depart-suggestion" placeholder="Départ" class="depart" value>
+                <datalist id="depart-suggestion">
+                    <option value="Paris"></option>
+                    <option value="Marseille"></option>
+                    <option value="Lyon"></option>
+                    <option value="Toulouse"></option>
+                    <option value="Nice"></option>
+                    <option value="Nantes"></option>
+                    <option value="Montpellier"></option>
+                    <option value="Strasbourg"></option>
+                    <option value="Bordeaux"></option>
+                    <option value="Lille"></option>
+                    <option value="Rennes"></option>
+                    <option value="Reims"></option>
+                    <option value="Le Havre"></option>
+                    <option value="Saint-Étienne"></option>
+                    <option value="Toulon"></option>
+                    <option value="Angers"></option>
+                    <option value="Grenoble"></option>
+                    <option value="Dijon"></option>
+                    <option value="Nîmes"></option>
+                    <option value="Aix-en-Provence"></option>
+                    <option value="La Rochelle"></option>
+                    <option value="Clermont-Ferrand"></option>
+                    <option value="Le Mans"></option>
+                    <option value="Amiens"></option>
+                    <option value="Tours"></option>
+                    <option value="Perpignan"></option>
+                    <option value="Metz"></option>
+                    <option value="Caen"></option>
+                    <option value="Boulogne-Billancourt"></option>
+                    <option value="Nancy"></option>
+                    <option value="Saint-Denis"></option>
+                    <option value="Pau"></option>
+                    <option value="Neuilly-sur-Seine"></option>
+                    <option value="La Seyne-sur-Mer"></option>
+                </datalist>
+                <input type="text" name="arrive" id="arrive-input" list="arrive-suggestion" placeholder="Arrivé" class="arrive" value>
+                <datalist id="arrive-suggestion">
+                    <option value="Paris"></option>
+                    <option value="Marseille"></option>
+                    <option value="Lyon"></option>
+                    <option value="Toulouse"></option>
+                    <option value="Nice"></option>
+                    <option value="Nantes"></option>
+                    <option value="Montpellier"></option>
+                    <option value="Strasbourg"></option>
+                    <option value="Bordeaux"></option>
+                    <option value="Lille"></option>
+                    <option value="Rennes"></option>
+                    <option value="Reims"></option>
+                    <option value="Le Havre"></option>
+                    <option value="Saint-Étienne"></option>
+                    <option value="Toulon"></option>
+                    <option value="Angers"></option>
+                    <option value="Grenoble"></option>
+                    <option value="Dijon"></option>
+                    <option value="Nîmes"></option>
+                    <option value="Aix-en-Provence"></option>
+                    <option value="La Rochelle"></option>
+                    <option value="Clermont-Ferrand"></option>
+                    <option value="Le Mans"></option>
+                    <option value="Amiens"></option>
+                    <option value="Tours"></option>
+                    <option value="Perpignan"></option>
+                    <option value="Metz"></option>
+                    <option value="Caen"></option>
+                    <option value="Boulogne-Billancourt"></option>
+                    <option value="Nancy"></option>
+                    <option value="Saint-Denis"></option>
+                    <option value="Pau"></option>
+                    <option value="Neuilly-sur-Seine"></option>
+                    <option value="La Seyne-sur-Mer"></option>
+                </datalist>
+                <input type="date" name="date" placeholder="Date" class="date" value="">
+                <input type="number" name="passagers" id="nombre-passagers" min="1" placeholder="Nombre de passagers" class="nombre-passagers" value="">
+                <input type="submit" value="Rechercher" class="submit-btn">
+            </div>
+        </form>
+        <div class="objectif-section">
+            <img src="img/covoiturage.jpg" alt="Covoiturage">
+            <div class="objectif-text">
+                <h1>Notre objectif</h1>
+                <p>Chez EcoRide, nous visons à réduire l'impact environnemental des déplacements en facilitant le <br> covoiturage. Notre plateforme offre une solution écologique et économique pour voyager ensemble, tout en préservant notre planète.</p>
+            </div>
+        </div>
+
+        <div class="verification-statement">
+            <img src="img/woman_smiling.jpg" alt="Femme qui sourit">
+            <div class="verification-text">
+                <h1>Tous nos conducteurs sont vérifiés</h1>
+                <p>Chez EcoRide, la sécurité et la confiance sont primordiales. C’est pourquoi tous nos conducteurs sont soigneusement vérifiés avant de rejoindre notre plateforme. Vous pouvez voyager en toute sérénité, sachant que chaque conducteur répond à nos standards rigoureux de qualité et de sécurité.</p>
+                <a href="covoiturage.html"><button class="button">Covoiturages</button></a>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>Contactez nous</h2>
+            <p>Pour toute question ou demande d'information, n'hésitez pas à nous contacter.<br> Nous sommes là pour vous aider et nous nous engageons à répondre à vos besoins<br> dans les plus brefs délais.</p>
+            <a href="contact.html"><button>Nous contacter</button></a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>EcoRide, 2025</p>
+        <p>ecoride@exemple.com.fr</p>
+        <a href="">Mentions Legales</a>
+    </footer>
+    <script src="js/home.js"></script>
+</body>
+</html>

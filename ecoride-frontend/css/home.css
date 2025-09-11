@@ -1,0 +1,304 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: white;
+}
+
+nav img {
+    width: 60px;
+    height: auto;
+    margin-left: 0;
+}
+
+nav .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+nav .logo-link p {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+
+/* Liste UL */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin-left: auto;
+}
+
+/* Chaque élément LI */
+nav ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(17, 125, 175);
+    font-family: arial;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: rgb(25, 206, 219);
+}
+
+/* Section background */
+main {
+    position: relative;
+    text-align: center;
+}
+
+.background-container {
+    position: relative;
+    width: 100vw;
+    height: 50vh;
+    min-height: 300px;
+    background-image: url('../img/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(31, 219, 72);
+    font-weight: bold;
+    font-size: clamp(20px, 6vw, 30px);
+    text-align: center;
+}
+
+/* Formulaire */
+form * {
+    border: 0;
+}
+
+form {
+    margin-top: 5%;
+    margin-bottom: 5%; 
+}
+
+form div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.arrive, .depart, .date, .nombre-passagers, input[type="submit"] {
+    padding: 15px;
+    margin: 0;
+    font-family: arial;
+    border: 1px solid rgb(169, 169, 169);
+    border-radius: 10px;
+    flex: 1 1 150px;
+    max-width: 300px;
+}
+
+.submit-btn {
+    color: rgb(255, 255, 255);
+    background-color:rgb(14, 100, 230);
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.objectif-section img {
+    margin-left: 5%;
+    width: 100%;
+    max-width: 500px;
+    float: left;
+    border-radius: 10px;
+}
+
+.objectif-text p{
+    font-size: 1.2rem;
+    font-family:'Noto Sans', serif;
+}
+
+.objectif-section h1 {
+    color: #023859;
+    font-family: 'Roboto', sans-serif;
+}
+
+.verification-statement img {
+    width: 100%;
+    max-width: 500px;
+    float: right;
+    border-radius: 10px;
+}
+
+.verification-text {
+    margin-top: 20%;
+    margin-left: 5%;
+    font-family:'Noto Sans', serif;
+}
+
+.verification-text h1 {
+    color: #023859;
+    font-family:'Roboto', sans-serif;
+}
+
+.verification-text a button {
+    background-color: rgb(14, 100, 230);
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: 1%;
+    cursor: pointer;
+}
+
+.contact-section {
+    float: none;
+    background-color: #023859;
+    color: white;
+    margin-top: 11%;
+    padding-top: 2%;
+    padding-bottom: 3%;
+}
+
+.contact-section h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.contact-section p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.contact-section a button {
+    color: rgba(0, 132, 255, 0.788);
+    border: none;
+    padding: 15px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+/* Hamburger - caché sur desktop */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: rgb(17, 125, 175);
+}
+
+/* Responsive : sur mobile, empiler image et texte */
+@media screen and (max-width: 768px) {
+    .objetif-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .objetif-section img {
+        float: none;
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+/* Menu mobile */
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    nav ul.nav-links {
+        position: absolute;
+        top: 60px;  /* sous la navbar */
+        right: 0;
+        width: 200px;
+        background-color: #ffffff;
+        flex-direction: column;
+        gap: 0;
+        display: none;  /* caché par défaut */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px 0;
+        z-index: 1000;
+    }
+
+    nav ul.nav-links li {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+}
+
+
+/* Footer */
+footer {
+    clear: both;
+    background-color: #192B38;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bolder;
+    font-family: arial;
+}
+
+footer a {
+    cursor: pointer;
+    font-family: arial;
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+}
+
+/* Media queries pour mobile */
+@media screen and (max-width: 768px) {
+
+    nav ul li a {
+        font-size: 16px;
+    }
+
+    form div {
+        flex-direction: column;
+    }
+
+    .arrive, .depart, .date, .nombre-passagers, input[type="submit"] {
+        flex: 1 1 70%;
+        max-width: 350px;
+    }
+
+    .objetif-section img {
+        width: 100%;
+        max-width: 200px;
+    }
+}
