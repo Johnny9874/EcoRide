@@ -23,7 +23,7 @@
             <li><a href="index.html">Accueil</a></li>
             <li><a href="covoiturage.html">Covoiturages</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="register.html">Connexion</a></li>
+            <li><a href="connexion.html">Connexion</a></li>
         </ul>
     </nav>
 
@@ -109,27 +109,48 @@
                     <option value="Neuilly-sur-Seine"></option>
                     <option value="La Seyne-sur-Mer"></option>
                 </datalist>
-                <input type="date" name="date" placeholder="Date" class="date" value="">
+                <input type="date" name="date" placeholder="Date" class="date" id="date-input" value="">
                 <input type="number" name="passagers" id="nombre-passagers" min="1" placeholder="Nombre de passagers" class="nombre-passagers" value="">
                 <input type="submit" value="Rechercher" class="submit-btn">
             </div>
         </form>
 
         <div class="filtres">
-            <button>Filtres</button>
-            <a>Effacer filtres</a>
+            <button onclick="toggleFilterMenu()">Filtres</button>
+            <a href="covoiturage.html">Effacer filtres</a>
         </div>
 
-        <div class="cards">
+        <section class="padding">
+            <form action="covoiturage.html" method="GET" class="form-filtres">
+                <div class="form-filtres-div">
+                    <div>
+                        <label for="eco">Voyage écologique</label>
+                        <input type="checkbox" name="eco" id="eco" default>
+                    </div>
+                    <div>
+                        <label for="prix">Prix maximum</label>
+                        <input type="number" name="prix" id="prix" min="1" step="0.1" value>
+                    </div>
+                </div>
 
-        </div>
-        <p>Veuillez indiquer le lieu de départ, d'arrivée, la date et le nombre de passagers...</p>
+                <input type="hidden" name="depart" value>
+                <input type="hidden" name="arrive" value>
+                <input type="hidden" name="date" value>
+                <input type="hidden" name="passagers" value="1">
+                <input type="submit" value="Filtrer" class="button">
+            </form>
+            
+            <p>Veuillez indiquer le lieu de départ, d'arrivée, la date et le nombre de passagers...</p>
+            <div class="cards"></div>
+        </section>
     </main>
 
-    <footer class="footer">
-        <p>EcoRide, 2025</p>
-        <p>ecoride@exemple.com.fr</p>
-        <a href="">Mentions Legales</a>
+    <footer>
+        <div class="footer-left">
+            <p>EcoRide, 2025</p>
+            <p>ecoride@exemple.com.fr</p>
+        </div>
+        <a href="">Mentions Légales</a>
     </footer>
     <script src="js/covoiturage.js"></script>
 </body>

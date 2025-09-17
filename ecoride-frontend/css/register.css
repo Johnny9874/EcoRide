@@ -68,67 +68,6 @@ nav ul li a:hover {
     color: rgb(25, 206, 219);
 }
 
-main {
-    position: relative;
-    text-align: center;
-}
-
-.background-container {
-    position: relative;
-    width: 100%;
-    height: 50vh;
-    min-height: 300px;
-    background-image: url('../img/59981667-43970396.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: rgb(31, 219, 72);
-    font-weight: bold;
-    font-size: clamp(20px, 6vw, 30px);
-    text-align: center;
-}
-
-/* Formulaire */
-form * {
-    border: 0;
-}
-
-form {
-    margin-top: 5%;
-    margin-bottom: 5%; 
-}
-
-form div {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-}
-
-.arrive, .depart, .date, .nombre-passagers, input[type="submit"] {
-    padding: 15px;
-    margin: 0;
-    font-family: arial;
-    border: 1px solid rgb(169, 169, 169);
-    border-radius: 10px;
-    flex: 1 1 150px;
-    max-width: 300px;
-}
-
-.submit-btn {
-    color: rgb(255, 255, 255);
-    background-color:rgb(14, 100, 230);
-    font-weight: bolder;
-    cursor: pointer;
-}
-
 /* Hamburger - caché sur desktop */
 .hamburger {
     display: none;
@@ -141,84 +80,6 @@ form div {
     width: 25px;
     height: 3px;
     background-color: rgb(17, 125, 175);
-}
-
-.filtres {
-    justify-self: left;
-    align-self: baseline;
-    margin-left: 5%;
-    margin-bottom: 2%;
-}
-
-.filtres button {
-    background-color: #0D89D6;
-    border: none;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    padding : 5px 15px;
-    font-size: 1.125rem;
-}
-
-.filtres a {
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    font-weight: bolder;
-}
-
-p {
-    color:#192b38c1;
-    font-family: 'Noto Sans', serif;
-    font-size: 1.125rem;
-    font-weight: bold;
-}
-
-label {
-    font-family: 'Noto Sans', serif;
-    color: rgb(88, 88, 88); 
-}
-
-.form-filtres {
-    display: grid;
-    justify-content: center;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    margin-bottom: 3rem;
-    border-color: black; 
-}
-
-.form-filtres div {
-    display: flex;
-    gap: 2rem;
-    align-items: baseline;
-    justify-content: center;
-    padding-top: 1rem;
-}
-
-.form-filtres .button {
-    justify-self: center;
-    margin-top: 1rem;
-    color: white;
-    border: none;
-    background-color: #0d89d6;
-    cursor: pointer;
-}
-
-.form-filtres-div input[type="number"] {
-    width: 3rem;
-    border-radius: 5px;
-    border: 1px solid #000;
-}
-
-.padding {
-    padding-left: 70px;
-    padding-right: 70px;
-    display: none;
-}
-
-.padding.active {
-  display: block;
 }
 
 /* Footer */
@@ -259,7 +120,6 @@ footer p {
     gap: 10px;
   }
 }
-
 
 @media screen and (max-width: 768px) {
     .hamburger {

@@ -3,11 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/style.css" rel="stylesheet">
-    <title>Register - EcoRide</title>
+    <link href="css/register.css" rel="stylesheet">
+    <title>connexion - EcoRide</title>
 </head>
 <body>
-    <h1>Register</h1>
-    <script src="js/main.js"></script>
+    <nav class="navbar">
+        <a href="index.html" class="logo-link">
+            <p>EcoRide</p>
+            <img class="logo" src="img/logo.png" alt="Logo Ecoride"></img>
+        </a>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="covoiturage.html">Covoiturages</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="connexion.html">Connexion</a></li>
+        </ul>
+    </nav>
+
+    <div class="inscription">
+        <form id="register-form">
+            <input type="email" id="email" placeholder="Email" required />
+            <input type="text" id="pseudo" placeholder="Pseudo" required>
+            <input type="password" id="password" placeholder="Mot de passe" required />
+            <select id="role">
+                <option value="USER">Client</option>
+                <option value="EMPLOYEE">Conducteur</option>
+            </select>
+            <button type="submit">S'inscrire</button>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-left">
+            <p>EcoRide, 2025</p>
+            <p>ecoride@exemple.com.fr</p>
+        </div>
+        <a href="">Mentions Légales</a>
+    </footer>
+    <script src="js/register.js"></script>
 </body>
 </html>

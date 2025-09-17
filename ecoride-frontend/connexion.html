@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/contact.css" rel="stylesheet">
-    <title>Contact - EcoRide</title>
+    <link href="css/connexion.css" rel="stylesheet">
+    <title>connexion - EcoRide</title>
 </head>
 <body>
     <nav class="navbar">
@@ -27,14 +27,16 @@
         </ul>
     </nav>
 
-    <div class="contact">
-        <h1>Nous contactez</h1>
-        <form class="contact-form" id="form-contact" method="POST">
-            <input type="text" placeholder="Nom" class="contact-name" id="nom-input" name="nom" required>
-            <input type="text" placeholder="Prénom" class="contact-lastname" id="prenom-input" name="prenom" required>
-            <input type="email" name="courriel" placeholder="Email" class="contact-email" id="email-input" required>
-            <textarea name="message" placeholder="Message" class="contact-message" required></textarea>
-            <input type="submit" name="Envoyer" value="Envoyer" class="button">
+    <div class="connexion">
+        <form id="login-form">
+            <input type="email" id="email" placeholder="Email" required />
+            <input type="password" id="password" placeholder="Mot de passe" required />
+            <select id="role">
+                <option value="USER">Client</option>
+                <option value="EMPLOYEE">Conducteur</option>
+            </select>
+            <button type="submit">Se connecter</button>
+            <button><a href="register.html">Pas de compte ? Clique ici !</a></button>
         </form>
     </div>
 
@@ -45,6 +47,6 @@
         </div>
         <a href="">Mentions Légales</a>
     </footer>
-    <script src="js/contact.js"></script>
+    <script src="js/connexion.js"></script>
 </body>
 </html>

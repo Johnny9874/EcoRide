@@ -19,6 +19,16 @@ npm -v
 psql --version
 mongo --version
 
+Et n'oublier pas d'installer nodemon sur votre machine afin que le serveur se relance automatiquement à chaque sauvegarde réaliser après fait des changements.
+
+Et nodemailer pour envoyer des emails.
+
+Et bcryptjs → pour hasher et vérifier les mots de passe ;
+
+jsonwebtoken → pour créer et vérifier les tokens JWT.
+
+Via : npm install bcryptjs jsonwebtoken => Dans le dossier backend.
+
 # Clonage et installation
 
 git clone https://github.com/Johnny9874/EcoRide.git

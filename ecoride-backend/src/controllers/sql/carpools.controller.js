@@ -3,7 +3,40 @@ const prisma = new PrismaClient();
 
 export const getAllCarpools = async (req, res) => {
   try {
+    const { depart, arrive, date, passagers, prix, eco } = req.query;
+
+    const filters = {};
+
+    if(depart) {
+      filters.from = { contains: depart, mode: "insensitive" };
+    }
+
+    if(arrive) {
+      filters.to = { contains: arrive, mode: "insensitive" };
+    }
+
+    if (date) {
+      const startDate = new Date(date);
+      const endDate = new Date(date);
+      endDate.setDate(endDate.getDate() + 1);
+
+      filters.date = { gte: startDate, lt: endDate };
+    }
+
+    if (prix) {
+      filters.price = { lte: parseFloat(prix) };
+    }
+
+    if (eco) {
+      filters.isEco = eco === "true";
+    }
+
+    if (passagers) {
+      filters.seatsLeft = { gte: parseInt(passagers, 10) };
+    }
+
     const carpools = await prisma.carpool.findMany({
+      where: filters,
       include: { 
         driver: {
             select : { id: true, email: true, pseudo: true }
@@ -13,6 +46,7 @@ export const getAllCarpools = async (req, res) => {
     });
     res.json(carpools);
   } catch (err) {
+    console.error("Erreur Prisma:", err);
     res.status(500).json({ error: err.message });
   }
 };
