@@ -135,15 +135,6 @@ main {
     font-family:'Roboto', sans-serif;
 }
 
-.verification-text a button {
-    background-color: rgb(14, 100, 230);
-    border: none;
-    color: white;
-    border-radius: 5px;
-    padding: 1%;
-    cursor: pointer;
-}
-
 .contact-section {
     float: none;
     background-color: #023859;
@@ -234,22 +225,32 @@ main {
 
 /* Footer */
 footer {
-    clear: both;
-    background-color: #192B38;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bolder;
-    font-family: arial;
+  clear: both;
+  background-color: #192B38;
+  color: white;
+  display: flex;
+  justify-content: space-between; /* espace entre les deux blocs */
+  align-items: center;
+  padding: 10px 20px;
+  font-weight: bolder;
+  font-family: arial;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column; /* empile EcoRide et email */
+  gap: 5px;
 }
 
 footer a {
-    cursor: pointer;
-    font-family: arial;
-    text-decoration: none;
-    color: white;
-    font-weight: bolder;
+  text-decoration: none;
+  color: white;
+  font-weight: bolder;
+}
+
+footer p {
+  color: white;   /* texte bien visible */
+  margin: 0;      /* enlève les marges par défaut */
 }
 
 /* Media queries pour mobile */
