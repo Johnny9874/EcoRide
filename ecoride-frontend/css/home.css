@@ -95,38 +95,8 @@ main {
     text-align: center;
 }
 
-/* Formulaire */
-form * {
-    border: 0;
-}
-
-form {
+.objectif-section {
     margin-top: 5%;
-    margin-bottom: 5%; 
-}
-
-form div {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-}
-
-.arrive, .depart, .date, .nombre-passagers, input[type="submit"] {
-    padding: 15px;
-    margin: 0;
-    font-family: arial;
-    border: 1px solid rgb(169, 169, 169);
-    border-radius: 10px;
-    flex: 1 1 150px;
-    max-width: 300px;
-}
-
-.submit-btn {
-    color: rgb(255, 255, 255);
-    background-color:rgb(14, 100, 230);
-    font-weight: bolder;
-    cursor: pointer;
 }
 
 .objectif-section img {

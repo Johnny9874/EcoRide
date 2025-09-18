@@ -66,9 +66,29 @@ export const getCarpoolById = async (req, res) => {
 
 export const createCarpool = async (req, res) => {
   try {
-    const carpool = await prisma.carpool.create({ data: req.body });
+    const { from, to, date, price, isEco, seatsTotal, seatsLeft, driverId, vehicleId } = req.body;
+
+    if (!driverId) {
+      return res.status(400).json({ error: "Un conducteur (driverId) est requis." });
+    }
+
+    const carpool = await prisma.carpool.create({
+      data: {
+        from,
+        to,
+        date: new Date(date), // assure un format correct
+        price,
+        isEco,
+        seatsTotal,
+        seatsLeft,
+        driver: { connect: { id: driverId }},
+        vehicle: { connect: { id: vehicleId } } // Associe un véhicule existant
+      }
+    });
+
     res.status(201).json(carpool);
   } catch (err) {
+    console.error("Erreur création covoiturage:", err);
     res.status(400).json({ error: err.message });
   }
 };

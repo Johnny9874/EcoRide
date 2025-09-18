@@ -57,19 +57,61 @@ export const getReservationById = async (req, res) => {
     }
 };
 
+export const getMyReservations = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const reservations = await prisma.reservation.findMany({
+      where: { userId },
+      include: {
+        carpool: { include: { driver: true } }
+      }
+    });
+
+    res.json(reservations);
+  } catch (err) {
+    res.status(500).json({ error: "Impossible de récupérer les réservations" });
+  }
+};
+
 export const createReservation = async (req, res) => {
-    try {
-        const { userId, carpoolId } = req.body;
-        const reservation = await prisma.reservation.create({ 
-                data: {
-                    user: { connect: { id: userId } },
-                    carpool: { connect: { id: carpoolId } }
-                }
-            });
-        res.status(201).json(reservation);
-    } catch (err) {
-        res.status(400).json({ error: err.message });
+  try {
+    const { carpoolId } = req.body;
+    const userId = req.user.id; // récupéré via JWT
+
+    if (!carpoolId) {
+      return res.status(400).json({ error: "Un carpoolId est requis" });
     }
+
+    // Vérifie les places restantes
+    const carpool = await prisma.carpool.findUnique({ where: { id: carpoolId } });
+    if (!carpool || carpool.seatsLeft <= 0) {
+      return res.status(400).json({ error: "Plus de places disponibles pour ce trajet" });
+    }
+
+    // Crée la réservation
+    const reservation = await prisma.reservation.create({ 
+      data: {
+        user: { connect: { id: userId } },
+        carpool: { connect: { id: carpoolId } },
+      },
+      include: {
+        carpool: { include: { driver: true } },
+        user: true
+      }
+    });
+
+    // Décrémente les places restantes
+    await prisma.carpool.update({
+      where: { id: carpoolId },
+      data: { seatsLeft: { decrement: 1 } }
+    });
+
+    res.status(201).json(reservation);
+  } catch (err) {
+    console.error("Erreur création réservation:", err);
+    res.status(400).json({ error: err.message });
+  }
 };
 
 export const updateReservation = async (req, res) => {

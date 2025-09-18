@@ -35,8 +35,34 @@ document.getElementById("form-recherche").addEventListener('submit', async (e) =
                     <p>Prix : ${c.price} €</p>
                     <p>Places restantes : ${c.seatsLeft}</p>
                     <p>Conducteur : ${c.driver?.pseudo || 'N/A'}</p>
+                    <button class="btn-reserver" data-id="${c.id}">Réserver</button>
                 </div>
                 `).join("");
+
+                document.querySelectorAll('.btn-reserver').forEach(btn => {
+                    btn.addEventListener('click', async e => {
+                        const carpoolId = e.target.dataset.id;
+                        const token = localStorage.getItem('token');
+
+                        const res = await fetch('http://localhost:3000/api/sql/reservations', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                        body: JSON.stringify({ carpoolId })
+                    });
+
+                const data = await res.json();
+                if (res.ok) {
+                    alert("Réservation confirmée !");
+                    // on redirige vers l'espace utilisateur
+                    window.location.href = "user.html";
+                } else {
+                    alert(data.error);
+                }
+            });
+            })
+            .catch((err) => console.log(err));
         })
-        .catch((err) => console.log(err));
-})
+});
