@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/contact.css" rel="stylesheet">
+    <title>Contact - EcoRide</title>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo-link">
+            <p>EcoRide</p>
+            <img class="logo" src="img/logo.png" alt="Logo Ecoride"></img>
+        </a>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="connexion.html">Connexion</a></li>
+        </ul>
+    </nav>
+
+    <div class="contact">
+        <h1>Nous contactez</h1>
+        <form class="contact-form" id="form-contact" method="POST">
+            <input type="text" placeholder="Nom" class="contact-name" id="nom-input" name="nom" required>
+            <input type="text" placeholder="Prénom" class="contact-lastname" id="prenom-input" name="prenom" required>
+            <input type="email" name="courriel" placeholder="Email" class="contact-email" id="email-input" required>
+            <textarea name="message" placeholder="Message" class="contact-message" required></textarea>
+            <input type="submit" name="Envoyer" value="Envoyer" class="button">
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-left">
+            <p>EcoRide, 2025</p>
+            <p>ecoride.contact12@gmail.com</p>
+        </div>
+        <a href="">Mentions Légales</a>
+    </footer>
+    <script src="js/contact.js"></script>
+</body>
+</html>

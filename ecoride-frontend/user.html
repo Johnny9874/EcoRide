@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/user.css" rel="stylesheet">
+    <title>User - EcoRide</title>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo-link">
+            <p>EcoRide</p>
+            <img class="logo" src="img/logo.png" alt="Logo Ecoride"></img>
+        </a>
+
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="covoiturage.html">Covoiturages</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="user">
+        <div class="user-container">
+            <h1 class="user-title">Bienvenue !</h1>
+            <div class="mes-reservations">
+                <h2>Mes réservations</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Départ</th>
+                            <th>Arrivée</th>
+                            <th>Conducteur</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reservations-body">
+                        <!-- Les lignes des réservations seront ajoutées ici par JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-left">
+            <p>EcoRide, 2025</p>
+            <p>ecoride.contact12@gmail.com</p>
+        </div>
+        <a href="">Mentions Légales</a>
+    </footer>
+    <script src="js/user.js"></script>
+</body>
+</html>
