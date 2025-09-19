@@ -1,4 +1,6 @@
 import { PrismaClient } from '@prisma/client';
+import Log from "../../db/mongoose/models/Log.js";
+
 const prisma = new PrismaClient();
 
 export const getAllReservation = async (req, res) => {
@@ -105,6 +107,13 @@ export const createReservation = async (req, res) => {
     await prisma.carpool.update({
       where: { id: carpoolId },
       data: { seatsLeft: { decrement: 1 } }
+    });
+
+      await Log.create({
+        userId,
+        action: "RESERVATION_CREATED",
+        details: { carpoolId },
+        ip: req.ip
     });
 
     res.status(201).json(reservation);
