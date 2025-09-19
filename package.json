@@ -15,6 +15,7 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./ecoride-backend/server.js"
+    "dev": "nodemon ./ecoride-backend/server.js",
+    "start": "node ./ecoride-backend/server.js"
   }
 }
