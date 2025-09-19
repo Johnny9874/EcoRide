@@ -11,7 +11,7 @@ document.getElementById('login-form').addEventListener('submit', async e => {
   const role = document.getElementById('role').value;
 
   try {
-    const res = await fetch('http://localhost:3000/api/sql/logins', {
+    const res = await fetch('https://ecoride-43lc.onrender.com/api/sql/logins', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password, role })

@@ -17,7 +17,7 @@ document.getElementById("form-recherche").addEventListener('submit', async (e) =
     const passagers = document.getElementById('nombre-passagers').value;
 
     const params = new URLSearchParams({ depart, arrive, date, passagers });
-    const url = `http://localhost:3000/api/sql/carpools?${params.toString()}`;
+    const url = `https://ecoride-43lc.onrender.com/api/sql/carpools?${params.toString()}`;
 
     fetch(url)
         .then(res => res.json())
@@ -44,7 +44,7 @@ document.getElementById("form-recherche").addEventListener('submit', async (e) =
                         const carpoolId = e.target.dataset.id;
                         const token = localStorage.getItem('token');
 
-                        const res = await fetch('http://localhost:3000/api/sql/reservations', {
+                        const res = await fetch('https://ecoride-43lc.onrender.com/api/sql/reservations', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',

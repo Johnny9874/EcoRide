@@ -6,7 +6,7 @@ function toggleMenu() {
 window.addEventListener('DOMContentLoaded', async () => {
   const token = localStorage.getItem('token');
 
-  const res = await fetch('http://localhost:3000/api/sql/reservations/me', {
+  const res = await fetch('https://ecoride-43lc.onrender.com/api/sql/reservations/me', {
       headers: { 'Authorization': `Bearer ${token}` }
   });
 
@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', async () => {
           const reservationId = e.target.dataset.id;
           const token = localStorage.getItem('token');
 
-          const res = await fetch(`http://localhost:3000/api/sql/reservations/${reservationId}`, {
+          const res = await fetch(`https://ecoride-43lc.onrender.com/api/sql/reservations/${reservationId}`, {
               method: 'DELETE',
               headers: {
                   'Authorization': `Bearer ${token}`

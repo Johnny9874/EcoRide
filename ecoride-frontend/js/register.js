@@ -11,7 +11,7 @@ document.getElementById('register-form').addEventListener('submit', async e => {
     const password = document.getElementById('password').value;
     const role = document.getElementById('role').value;
 
-    const res = await fetch('http://localhost:3000/api/sql/register', {
+    const res = await fetch('https://ecoride-43lc.onrender.com/api/sql/register', {
         method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password, role, pseudo })
