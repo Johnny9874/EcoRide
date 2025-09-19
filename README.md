@@ -1,218 +1,234 @@
 # EcoRide
 
-EcoRide est une startup française qui a pour objectif de réduire l'impact environnemental des déplacements en encourageant le covoiturage.
-L’application web vise à devenir la plateforme principale pour les voyageurs soucieux de l'environnement et ceux cherchant une solution économique pour leurs trajets en voiture.
+EcoRide est une startup française qui vise à réduire l'impact environnemental des déplacements en encourageant le covoiturage.
+Cette application web permet aux voyageurs soucieux de l'environnement de trouver des trajets économiques et pratiques.
 
-# Prérequis
-
-Assurez-vous d’avoir les outils suivants installés sur votre machine :
-
-Node.js >= 18
-npm >= 9
-PostgreSQL >= 14
-MongoDB >= 6
-
-Vérifiez avec :
-
-node -v
-npm -v
-psql --version
-mongo --version
-
-Et n'oublier pas d'installer nodemon sur votre machine afin que le serveur se relance automatiquement à chaque sauvegarde réaliser après fait des changements.
-
-Et nodemailer pour envoyer des emails.
-
-Et bcryptjs → pour hasher et vérifier les mots de passe ;
-
-jsonwebtoken → pour créer et vérifier les tokens JWT.
-
-Via : npm install bcryptjs jsonwebtoken => Dans le dossier backend.
-
-# Clonage et installation
+# 🔗 Clonage et installation
 
 git clone https://github.com/Johnny9874/EcoRide.git
 cd ecoride-backend
-npm install   # ou yarn install
+npm install   # ou yarn install si vous utilisez Yarn
 
-# Configuration
+# 📌 Prérequis
+
+Avant de lancer le projet localement, assurez-vous d’avoir installé sur votre machine :
+
+Node.js >= 18 – environnement d’exécution pour JavaScript côté serveur (permet à votre ordinateur d’exécuter le back-end).
+Vérifier : node -v
+
+npm >= 9 – gestionnaire de modules pour Node.js (permet d’installer des librairies ou outils additionnels).
+Vérifier : npm -v
+
+PostgreSQL >= 14 – base de données relationnelle, stocke vos données structurées en tables.
+Vérifier : psql --version
+
+MongoDB >= 6 – base de données NoSQL, plus flexible pour stocker des documents JSON.
+Vérifier : mongo --version
+
+# Modules supplémentaires à installer globalement ou dans le backend :
+
+npm install -g nodemon
+npm install bcryptjs jsonwebtoken nodemailer
+
+- nodemon → relance automatiquement le serveur dès qu’un fichier est modifié, pratique en développement.
+
+- bcryptjs → permet de hasher les mots de passe pour les stocker de façon sécurisée.
+
+## 🔒 Hasher les mots de passe
+
+    Qu’est-ce que “hasher” un mot de passe ?
+    Hasher un mot de passe signifie transformer le mot de passe en une suite de caractères unique, appelée hash, qui ne peut pas être facilement inversée.
+    L’idée : même si quelqu’un vole la base de données, il ne pourra pas retrouver les mots de passe originaux.
+
+    Exemple concret :
+
+    Mot de passe : MonSuperMotDePasse123
+
+    Hash généré par bcrypt : $2a$10$e0MYzXyjpJS7Pd0RVvHwHeFxkRjKf1Eo2O/OTa7e1x0zEoFJfQ5G6
+
+    Chaque hash est unique et très difficile à déchiffrer. Quand un utilisateur se connecte :
+
+    Il saisit son mot de passe.
+
+    L’application hashe ce mot de passe avec le même algorithme.
+
+    Le hash généré est comparé avec celui stocké dans la base.
+
+    Si ça correspond, l’utilisateur est authentifié.
+
+    Hasher n’est pas chiffrer : on ne peut pas retrouver le mot de passe original à partir du hash.
+
+- jsonwebtoken (JWT) → permet de créer des tokens pour authentifier les utilisateurs.
+
+## 🔑 Token (JWT) et authentification
+
+    Qu’est-ce qu’un token ?
+    Un token est une clé numérique que le serveur donne à un utilisateur après qu’il s’est connecté correctement.
+    Cette clé permet à l’utilisateur de prouver qu’il est authentifié lors de ses prochaines requêtes, sans renvoyer son mot de passe à chaque fois.
+
+    JWT (JSON Web Token) :
+
+    Contient des informations comme l’ID de l’utilisateur, son rôle, ou la date d’expiration.
+
+    Est signé avec une clé secrète (JWT_SECRET) pour que le serveur puisse vérifier qu’il n’a pas été modifié.
+
+    Exemple :
+
+    JWT généré :
+
+    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+    eyJ1c2VySWQiOiIxMjM0NTYiLCJyb2xlIjoiVVNFUiIsImV4cCI6MTY4NzUxMjAwMH0.
+    H0fFh6b3tC-sW1g8lG9u5fKjT0lN5pIox5f8Pfg1gHo
+
+
+    La première partie → en-tête
+
+    La deuxième partie → payload (données de l’utilisateur)
+
+    La troisième partie → signature (permet de vérifier que le token est authentique)
+
+    Comment ça sert à authentifier ?
+
+    L’utilisateur se connecte avec son email et mot de passe.
+
+    Le serveur vérifie le mot de passe (hash).
+
+    Le serveur envoie un token JWT au client.
+
+    Pour toutes les prochaines requêtes, le client envoie ce token dans les headers.
+
+    Le serveur vérifie le token et permet ou refuse l’accès aux ressources.
+
+    Avantage : pas besoin de stocker de session côté serveur, tout est sécurisé via le token.
+
+- nodemailer → permet d’envoyer des emails depuis votre application.
+
+# ⚙️ Configuration
 
 Créez un fichier .env à la racine de ecoride-backend :
 
-PORT=3000
 DATABASE_URL=postgresql://user:password@localhost:5432/ecoride
 MONGO_URI=mongodb://localhost:27017/ecoride
 JWT_SECRET=ma_cle_ultra_secrete
 
-# Base de données SQL avec Prisma
+
+DATABASE_URL → URL de connexion à votre base PostgreSQL.
+
+MONGO_URI → URL de connexion à votre base MongoDB.
+
+JWT_SECRET → clé secrète utilisée pour générer et vérifier les tokens JWT.
+
+💡 Pour tester avec vos bases hébergées (Render et MongoDB Atlas), remplacez DATABASE_URL et MONGO_URI par leurs URLs correspondantes.
+
+# 🗄️ Base de données SQL (PostgreSQL avec Prisma)
+
+Prisma → ORM (Object-Relational Mapping) qui traduit les requêtes de votre code en instructions SQL pour PostgreSQL.
 
 Initialiser la base et générer le client Prisma :
 
 npx prisma migrate dev --name init
-npx prisma generate
+npx prisma generate --schema=prisma/schema.prisma
 
 
-# Insertion de données test (si seed.js présent) :
+seed.js (si présent) → script pour insérer des données de test automatiquement.
 
 node seed.js
 
-Vérifiez avec pgAdmin : Databases/ecoride/Schemas/public/Tables.
+Vérification via pgAdmin : Databases → ecoride → Schemas → public → Tables.
 
-# Base de données NoSQL (MongoDB)
+# 🗄️ Base de données NoSQL (MongoDB)
 
-Créez un cluster sur MongoDB Atlas.
-Récupérez l’URL de connexion et mettez-la dans .env.
+Créez un cluster sur MongoDB Atlas ou utilisez votre Mongo local.
 
-# Installez les dépendances :
+Ajoutez l’URL de connexion dans .env.
+
+Installez les dépendances MongoDB si nécessaire :
 
 npm install mongoose dotenv
 
-# Lancer le serveur MongoDB :
 
-npm run dev
+Mongoose → bibliothèque qui facilite la connexion et la manipulation de MongoDB depuis Node.js.
+
+# ▶️ Lancer le serveur
+
+npm run dev   # pour le développement avec nodemon
+npm start     # pour la production
 
 
-# Vérifiez l’insertion de données test dans Atlas.
+L’API sera disponible : http://localhost:3000/api
 
-Lancer le serveur
-npm run dev
+Live URL front-end : https://ecoride-1-rdi9.onrender.com
 
-API disponible : http://localhost:3000/api
+Live URL back-end : https://ecoride-43lc.onrender.com
 
-# API RESTful
+# 🧩 Endpoints API
 
-# MongoDB (NoSQL) :
+MongoDB (NoSQL)
 
-GET /api/users/ → liste des utilisateurs
-GET /api/users/:id → un utilisateur précis
-PUT /api/users/:id → modifier un utilisateur
-POST /api/users/ → créer un utilisateur
+GET	/api/users/	  =>  Liste des utilisateurs
+GET	/api/users/:id	=>  Détail d’un utilisateur
+POST	/api/users/	=>  Créer un utilisateur
+PUT	/api/users/:id	=>  Modifier un utilisateur
 
-Assurez-vous de mettre Content-Type: application/json dans les headers pour toutes les requêtes POST et PUT.
+PostgreSQL (SQL avec Prisma)
 
-# PostgreSQL (SQL avec Prisma)
+GET	/api/sql/carpools/	=>  Liste des covoiturages
+GET	/api/sql/carpools/:id	=>  Détail d’un covoiturage
+POST	/api/sql/carpools/	=>  Créer un covoiturage
+PUT	/api/sql/carpools/:id	=>  Modifier un covoiturage
+DELETE	/api/sql/carpools/:id	=>  Supprimer un covoiturage
 
-Ici, vous trouverez tout les endpoints CRUD des différente table: 
+Même structure pour feedbacks, preferences, reservations, users, vehicles.
 
-# carpools endpoint
+# Exemples de requêtes avec Postman
 
-GET /api/sql/carpools/ → liste des covoiturages <br>
-GET /api/sql/carpools/:id → covoiturage spécifique <br>
-POST /api/sql/carpools/ → créer un covoiturage <br>
-PUT /api/sql/carpools/:id → modifier un covoiturage <br>
-DELETE /api/sql/carpools/:id → supprimer un covoiturage <br>
+GET http://localhost:3000/api/users/
 
-# feedbacks endpoint
+POST http://localhost:3000/api/sql/carpools/
+Body JSON: { "driverId": 1, "vehicleId": 2, "departure": "Paris", "arrival": "Lyon" }
 
-GET /api/sql/feedbacks/ → liste des feedbacks <br>
-GET /api/sql/feedbacks/:id → feedbacks spécifique <br>
-POST /api/sql/feedbacks/ → créer un feedbacks <br>
-PUT /api/sql/feedbacks/:id → modifier un feedbacks <br>
-DELETE /api/sql/feedbacks/:id → supprimer un feedbacks <br>
+Attention à bien mettre content-type et application/json dans postman sinon ça ne marchera pas !
 
-# preferences endpoint
+# 🔗 Relations entre tables
 
-GET /api/sql/preferences/ → liste des preferences <br>
-GET /api/sql/preferences/:id → preferences spécifique <br>
-POST /api/sql/preferences/ → créer une preferences <br>
-PUT /api/sql/preferences/:id → modifier une preferences <br>
-DELETE /api/sql/preferences/:id → supprimer une preferences <br>
+User → possède plusieurs Vehicles, Carpools, Reservations, Preferences.
 
-# reservations endpoint
+Vehicle → appartient à un User, utilisé dans plusieurs Carpools.
 
-GET /api/sql/reservations/ → liste des reservations <br>
-GET /api/sql/reservations/:id → reservation spécifique <br>
-POST /api/sql/reservations/ → créer une reservation <br>
-PUT /api/sql/reservations/:id → modifier une reservation <br>
-DELETE /api/sql/reservations/:id → supprimer une reservation <br>
+Carpool → appartient à un User (driver), utilise un Vehicle, contient plusieurs Reservations.
 
-# users endpoint
+Reservation → appartient à un User, lié à un Carpool, peut avoir un Feedback.
 
-GET /api/sql/users/ → liste des users <br>
-GET /api/sql/users/:id → user spécifique <br>
-POST /api/sql/users/ → créer un user <br>
-PUT /api/sql/users/:id → modifier un user <br>
-DELETE /api/sql/users/:id → supprimer un user <br>
+Feedback → appartient à une Reservation.
 
-# vehicles endpoint
+Preference → appartient à un User.
 
-GET /api/sql/vehicles/ → liste des vehicles <br>
-GET /api/sql/vehicles/:id → vehicle spécifique <br>
-POST /api/sql/vehicles/ → créer un vehicle <br>
-PUT /api/sql/vehicles/:id → modifier un vehicle <br>
-DELETE /api/sql/vehicles/:id → supprimer un vehicle <br>
-
-# Relation entre table
-
-Ici, vous pouvez visualisé les relations de chacune des tables présent dans ce projet.
-
-# User
-
-Peut posséder plusieurs Vehicles (User.id → Vehicle.ownerId)
-
-Peut créer plusieurs Carpools (User.id → Carpool.driverId)
-
-Peut avoir plusieurs Reservations (User.id → Reservation.userId)
-
-Peut avoir plusieurs Preferences (User.id → Preference.driverId)
-
-# Vehicle
-
-Appartient à un User (Vehicle.ownerId → User.id)
-
-Peut être utilisé pour plusieurs Carpools (Vehicle.id → Carpool.vehicleId)
-
-# Carpool
-
-Appartient à un User en tant que driver (Carpool.driverId → User.id)
-
-Utilise un Vehicle (Carpool.vehicleId → Vehicle.id)
-
-Peut avoir plusieurs Reservations (Carpool.id → Reservation.carpoolId)
-
-# Reservation
-
-Appartient à un User (Reservation.userId → User.id)
-
-Liée à un Carpool (Reservation.carpoolId → Carpool.id)
-
-Peut avoir un Feedback (Reservation.id → Feedback.reservationId)
-
-# Feedback
-
-Appartient à une Reservation (Feedback.reservationId → Reservation.id)
-
-# Preference
-
-Appartient à un User (Preference.driverId → User.id)
-
-# Workflow Git recommandé
+# 🌱 Git Workflow recommandé
 
 Travailler sur dev :
 
 git checkout dev
-
-.modifier README.md
-
-git add README.md
-git commit -m "Update README"
+# modifier README.md ou fonctionnalités
+git add .
+git commit -m "Message de commit"
 git push origin dev
 
 
-Merger vers main après validation :
+Merge vers main après tests :
 
 git checkout main
 git merge dev
 git push origin main
 
-Toujours faire les changements sur dev, tester, puis fusionner vers main pour garder la branche principale stable.
-
-# Bonnes pratiques
+# 📑 Bonnes pratiques
 
 Ne pas commiter les fichiers sensibles (.env, node_modules).
 
-Vérifier les migrations Prisma avant de merger.
+Vérifier les migrations Prisma avant merge.
 
 Toujours tester les endpoints API via Postman ou un outil similaire.
 
-# 💡 Astuce : pour visualiser les PDF dans VS Code, installer l’extension PDF Preview.
+# 💡 Astuce : 
+
+Afin de visualiser des PDF dans VS Code, installer l’extension PDF Preview.
+Screenshots des maquettes front-end et mobile peuvent être ajoutés ici ou dans un dossier /docs ou /livrable à la racine du projet.
