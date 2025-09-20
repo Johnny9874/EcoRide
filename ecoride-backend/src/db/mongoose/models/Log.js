@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const logSchema = new mongoose.Schema({
   userId: { type: String, required: true },
   action: { type: String, required: true },
-  details: { type: Object }, // tu peux mettre carpoolId, reservationId, etc.
+  details: { type: Object },
   ip: { type: String },
   createdAt: { type: Date, default: Date.now }
 });

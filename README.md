@@ -3,13 +3,13 @@
 EcoRide est une startup française qui vise à réduire l'impact environnemental des déplacements en encourageant le covoiturage.
 Cette application web permet aux voyageurs soucieux de l'environnement de trouver des trajets économiques et pratiques.
 
-# 🔗 Clonage et installation
+## 🔗 Clonage et installation
 
 git clone https://github.com/Johnny9874/EcoRide.git
 cd ecoride-backend
 npm install   # ou yarn install si vous utilisez Yarn
 
-# 📌 Prérequis
+## 📌 Prérequis
 
 Avant de lancer le projet localement, assurez-vous d’avoir installé sur votre machine :
 
@@ -25,7 +25,7 @@ Vérifier : psql --version
 MongoDB >= 6 – base de données NoSQL, plus flexible pour stocker des documents JSON.
 Vérifier : mongo --version
 
-# Modules supplémentaires à installer globalement ou dans le backend :
+### Modules supplémentaires à installer globalement ou dans le backend :
 
 npm install -g nodemon
 npm install bcryptjs jsonwebtoken nodemailer
@@ -34,7 +34,7 @@ npm install bcryptjs jsonwebtoken nodemailer
 
 - bcryptjs → permet de hasher les mots de passe pour les stocker de façon sécurisée.
 
-## 🔒 Hasher les mots de passe
+### 🔒 Hasher les mots de passe
 
     Qu’est-ce que “hasher” un mot de passe ?
     Hasher un mot de passe signifie transformer le mot de passe en une suite de caractères unique, appelée hash, qui ne peut pas être facilement inversée.
@@ -60,7 +60,7 @@ npm install bcryptjs jsonwebtoken nodemailer
 
 - jsonwebtoken (JWT) → permet de créer des tokens pour authentifier les utilisateurs.
 
-## 🔑 Token (JWT) et authentification
+### 🔑 Token (JWT) et authentification
 
     Qu’est-ce qu’un token ?
     Un token est une clé numérique que le serveur donne à un utilisateur après qu’il s’est connecté correctement.
@@ -103,7 +103,7 @@ npm install bcryptjs jsonwebtoken nodemailer
 
 - nodemailer → permet d’envoyer des emails depuis votre application.
 
-# ⚙️ Configuration
+## ⚙️ Configuration
 
 Créez un fichier .env à la racine de ecoride-backend :
 
@@ -120,7 +120,7 @@ JWT_SECRET → clé secrète utilisée pour générer et vérifier les tokens JW
 
 💡 Pour tester avec vos bases hébergées (Render et MongoDB Atlas), remplacez DATABASE_URL et MONGO_URI par leurs URLs correspondantes.
 
-# 🗄️ Base de données SQL (PostgreSQL avec Prisma)
+## 🗄️ Base de données SQL (PostgreSQL avec Prisma)
 
 Prisma → ORM (Object-Relational Mapping) qui traduit les requêtes de votre code en instructions SQL pour PostgreSQL.
 
@@ -136,7 +136,7 @@ node seed.js
 
 Vérification via pgAdmin : Databases → ecoride → Schemas → public → Tables.
 
-# 🗄️ Base de données NoSQL (MongoDB)
+## 🗄️ Base de données NoSQL (MongoDB)
 
 Créez un cluster sur MongoDB Atlas ou utilisez votre Mongo local.
 
@@ -149,7 +149,7 @@ npm install mongoose dotenv
 
 Mongoose → bibliothèque qui facilite la connexion et la manipulation de MongoDB depuis Node.js.
 
-# ▶️ Lancer le serveur
+## ▶️ Lancer le serveur
 
 npm run dev   # pour le développement avec nodemon
 npm start     # pour la production
@@ -161,7 +161,7 @@ Live URL front-end : https://ecoride-1-rdi9.onrender.com
 
 Live URL back-end : https://ecoride-43lc.onrender.com
 
-# 🧩 Endpoints API
+## 🧩 Endpoints API
 
 MongoDB (NoSQL)
 
@@ -180,7 +180,7 @@ DELETE	/api/sql/carpools/:id	=>  Supprimer un covoiturage
 
 Même structure pour feedbacks, preferences, reservations, users, vehicles.
 
-# Exemples de requêtes avec Postman
+## Exemples de requêtes avec Postman
 
 GET http://localhost:3000/api/users/
 
@@ -189,7 +189,7 @@ Body JSON: { "driverId": 1, "vehicleId": 2, "departure": "Paris", "arrival": "Ly
 
 Attention à bien mettre content-type et application/json dans postman sinon ça ne marchera pas !
 
-# 🔗 Relations entre tables
+## 🔗 Relations entre tables
 
 User → possède plusieurs Vehicles, Carpools, Reservations, Preferences.
 
@@ -203,12 +203,12 @@ Feedback → appartient à une Reservation.
 
 Preference → appartient à un User.
 
-# 🌱 Git Workflow recommandé
+## 🌱 Git Workflow recommandé
 
 Travailler sur dev :
 
 git checkout dev
-# modifier README.md ou fonctionnalités
+## modifier README.md ou fonctionnalités
 git add .
 git commit -m "Message de commit"
 git push origin dev
@@ -220,7 +220,7 @@ git checkout main
 git merge dev
 git push origin main
 
-# 📑 Bonnes pratiques
+## 📑 Bonnes pratiques
 
 Ne pas commiter les fichiers sensibles (.env, node_modules).
 
@@ -228,7 +228,7 @@ Vérifier les migrations Prisma avant merge.
 
 Toujours tester les endpoints API via Postman ou un outil similaire.
 
-# 💡 Astuce : 
+## 💡 Astuce : 
 
 Afin de visualiser des PDF dans VS Code, installer l’extension PDF Preview.
 Screenshots des maquettes front-end et mobile peuvent être ajoutés ici ou dans un dossier /docs ou /livrable à la racine du projet.
